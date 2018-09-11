@@ -16,6 +16,12 @@ export class BlogHttpService {
 
   }
 
+  private handleError(err:HttpErrorResponse){
+    console.log("Handle error Http calls")
+    console.log(err.message);
+    return Observable.throw(err.message)
+  }
+
 public getAllBlogs(): any{
 
 let myResponse = this._http.get(this.baseUrl+'/all?authToken='+this.authToken);
@@ -30,5 +36,23 @@ public getSingleBlogInformation(currentBlogId): any{
 return myResponse;
 }
 
+public createBlog(blogData): any{
+  let myResponse = this._http.post(this.baseUrl + '/create' + '?authToken=' + this.authToken, blogData)
+  return myResponse;
+
+}
+
+public deleteBlog(blogId): any {
+
+  let data ={}
+  let myResponse =this._http.post(this.baseUrl + '/' + blogId + '/delete' + '?authToken=' + this.authToken, data)
+  return myResponse;
+}
+
+public editBlog(blogId, blogData): any {
+
+  let myResponse = this._http.put(this.baseUrl + '/' + blogId + '/edit' + '?authToken=' + this.authToken, blogData)
+  return myResponse;
+}
 }
 

@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
+
+
 import{RouterModule,Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -11,7 +14,7 @@ import { BlogEditComponent } from './blog-edit/blog-edit.component';
 import { BlogService } from './blog.service';
 import { AboutComponent } from './about/about.component';
 import { BlogHttpService } from './blog-http.service';
-
+import {HttpClientModule} from '@angular/common/http'
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +25,9 @@ import { BlogHttpService } from './blog-http.service';
     AboutComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot([
 {path:'home',component:HomeComponent},
 {path:'',redirectTo:'home',pathMatch:'full'},
